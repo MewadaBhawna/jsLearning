@@ -1,0 +1,98 @@
+𝟏𝟏-𝟐𝟎: 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧𝐬 𝐚𝐧𝐝 𝐒𝐜𝐨𝐩𝐞
+
+11. What is a callback function?
+12. Explain the concept of a pure function.
+13. Describe the differences between function.call,function.apply, and function.bind.
+14. What is the purpose of the arguments object in a function?
+15. How do you create a closure in JavaScript?
+16. What is the use of the bind method?
+17. What is the difference between a shallow copy and a deep copy?
+18. How does the call stack work in JavaScript?
+19. Explain the concept of function currying.
+20. How can you avoid callback hell in JavaScript?
+
+11. What is a callback function?
+callback function is a function which is passed as an argument in a function.
+with help of it we can perform asynchronous operations.
+ex.
+function multiply(funcArg) {
+  console.log(funcArg);
+}
+function by2(a) { //callback functiom
+  return 2 * a;
+}
+function by3(a) { //callback function
+  return 3 * a;
+}
+multiply(by2(5));
+multiply(by3(5));
+
+12. Explain the concept of a pure function.
+pure function are functions which retuns same output for same input each time and which has no side effects(no https calls, console.log,mutating inputs).
+pure function:
+const add = (x, y) => x + y;
+
+add(2, 4);
+
+impure function:
+let x = 2;
+
+const add = (y) => {
+  x += y;
+};
+
+add(4);
+
+
+13. Describe the differences between function.call,function.apply, and function.bind.
+all these function are sharing methods.
+
+call: is a function that helps to change the context of the invoking function i.e it helps to replce value of this.
+apply: similar to call, only difference is syntax.
+Bind: is a function that returns a copy of original function which can be invoked later.
+syntax are different
+
+function.call(this, argument);
+function.apply(this, argumentInArray)
+function.bind(this, arguments) but it return a copy of original function which can be invoke later.
+
+
+
+14. What is the purpose of the arguments object in a function?
+** note Now we should use rest operator
+
+arguments is a array like object accessible inside a function  that contains arguments passed to that function.
+the arguments object is a local variable available within function(except arrow function)
+
+basic example:
+function func1(a, b, c) {
+  console.log(arguments[0]);
+  // Expected output: 1
+
+  console.log(arguments[1]);
+  // Expected output: 2
+
+  console.log(arguments[2]);
+  // Expected output: 3
+}
+
+func1(1, 2, 3);
+example 2.
+function longestString() {
+  let longest = "";
+  for (let i = 0; i < arguments.length; i++) {
+    if (arguments[i].length > longest.length) {
+      longest = arguments[i];
+    }
+  }
+  return longest;
+}
+
+15. How do you create a closure in JavaScript?
+closure is a function along with its lexical scope bundled together.
+
+16. What is the use of the bind method?
+17. What is the difference between a shallow copy and a deep copy?
+18. How does the call stack work in JavaScript?
+19. Explain the concept of function currying.
+20. How can you avoid callback hell in JavaScript?

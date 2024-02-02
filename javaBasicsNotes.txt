@@ -1,0 +1,136 @@
+1-𝟏𝟎: 𝐁𝐚𝐬𝐢𝐜𝐬 𝐨𝐟 𝐉𝐚𝐯𝐚𝐒𝐜𝐫𝐢𝐩𝐭
+
+1. What is JavaScript?
+2. Explain the difference between let, const, and var.
+3. How does hoisting work in JavaScript?
+4. Describe the concept of closures.
+5. Explain the event loop in JavaScript.
+6. What is the difference between == = and ===?
+7. How do you check the type of a variable in JavaScript?
+8. What is the use of the this keyword in JavaScript?
+9. Explain the difference between function declaration and function expression.
+10. How does the setTimeout function work?
+
+
+
+1. What is JavaScript?
+Javascript is single threaded synchronous scripting programming language.
+It is the third layer of the layer cake of standard web technologies, two of which HTML and CSS.
+
+2. Explain the difference between let, const, and var.
+var:
+.functional scope
+.can be used without initialization
+.value can be modified
+
+let: 
+.block scope
+.without intilization cant be used.
+.value can be modified.
+
+const:
+.block scope
+.value can never be change 
+initialization is must, else throe error
+
+3. How does hoisting work in JavaScript?
+below definations may be regarded as hoisting:
+
+.Being able to use a variable's value in its scope before the line it is declared. ("Value hoisting").
+.Being able to reference a variable in its scope before the line it is declared, without throwing a ReferenceError, 
+but the value is always undefined. ("Declaration hoisting")
+example:
+function(){
+   var x;
+   console.log(x) //undefined;
+   x=5;
+}
+
+
+
+4. Describe the concept of closures.
+closure is a function along with its lexical scope bundled together.
+ex:
+function a(x,y){
+    let sum= x+y;
+    function b(){
+        console.log(sum);
+    }
+}
+function b is closure.
+
+5. Explain the event loop in JavaScript.
+js engine architecture includes 3 steps as following parsing, compliation and execution.
+while parsing code we have a logic which should be executed after sometime(like settimeout), Js doesnt wait that function is register and moved to callback queue.
+js engine has one call stack, so Event loops monitior call stack and callback queue, if stack is empty then callback queue task can be executed.
+
+
+6. What is the difference between == = and ===?
+= : assign operator
+ex: var a= 5;
+var b = a;
+
+==: comparison opertor without type check
+ex var a=5, b='5'
+console.log(a==b)// true
+
+===: comparison opertor with type check
+ex var a=5, b='5'
+console.log(a==b)// false
+
+7. How do you check the type of a variable in JavaScript?
+typeOf()
+//Array.isArray(yourArray)
+8. What is the use of the this keyword in JavaScript?
+. this keyword work differently in strict and non-strict mode.
+.this keyword value depends how the function is called.
+. this substitution: if the value of this is null or undefined then this is replaced by global object.
+
+ex:
+function x(){
+    console.log(x);// window
+}
+. inside arrow function, this is value is of enclosing lexical context
+const obj = {
+  a: 10,
+  x: function check() {
+    const b = () => {
+      console.log(this);
+    };
+    b();
+  },
+};
+obj.x();// {a: 10, f}
+
+9. Explain the difference between function declaration and function expression.
+
+function declaration: 
+function sum(a, b){
+return a+b;
+}
+
+function expression:(IIFE which runs as soon as it is defined)
+let sum = function(a, b){
+return a+b;
+}
+
+difference is hoisting.
+console.log(notHoisted); // undefined
+// Even though the variable name is hoisted,
+// the definition isn't. so it's undefined.
+notHoisted(); // TypeError: notHoisted is not a function
+
+var notHoisted = function () {
+  console.log("bar");
+};
+
+
+10. How does the setTimeout function work?
+settimeout is web API, takes 2 arguments one is callback function and second is time delay.
+syntax:
+setTimeout(()=>{},1000);
+
+when a parser read settimeout, the callback function is registered and timer start when given delay time is covered, the callback function is moved to callback queue.
+ Till the time js parser continue parsing the code it doesnt wait for settimeout to complete.Once call stack empty the event loop move the callback function to call stack for execution.
+
+
